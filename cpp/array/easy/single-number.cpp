@@ -42,3 +42,6 @@ int main() {
 
   cout << "Single number in the array is: " << single_number << endl;
 }
+
+// XOR - Bit manipulation is used to get the optimal solution.
+// map or switch method is also can be used for brute force approach.
