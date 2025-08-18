@@ -1,3 +1,7 @@
+//27. Remove Element
+//https://leetcode.com/problems/remove-element/
+// Explanation video - https://youtu.be/Pcd1ii9P9ZI?si=2NsP2ODNRbPEURGL
+
 #include <iostream>
 #include <vector>
 using namespace std;
