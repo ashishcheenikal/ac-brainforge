@@ -273,11 +273,10 @@ void Pattern15(int n) {
   }
 }
 
-
-// A 
-// B B 
-// C C C 
-// D D D D 
+// A
+// B B
+// C C C
+// D D D D
 // E E E E E
 void Pattern16(int n) {
   char val = 'A';
@@ -287,6 +286,104 @@ void Pattern16(int n) {
       cout << static_cast<char>(asciiCode) << ' ';
     }
     asciiCode++;
+    cout << endl;
+  }
+}
+
+// - - - - A
+// - - - A B A
+// - - A B C B A
+// - A B C D C B A
+// A B C D E D C B A
+void Pattern17(int n) {
+  for (int i = 0; i < n; i++) {
+    int asciiCode = 'A';
+    for (int j = 0; j < n - i - 1; j++) {
+      cout << '-' << ' ';
+    }
+    for (int k = 0; k < (2 * i + 1); k++) {
+      cout << static_cast<char>(asciiCode) << ' ';
+      if (k < i) {
+        asciiCode++;
+      } else {
+        asciiCode--;
+      }
+    }
+    cout << endl;
+  }
+}
+
+// E
+// D E
+// C D E
+// B C D E
+// A B C D E
+// LOGIC---------------
+// 64 65 66 67 68
+// start = 64 + (n -1)
+// 68 (s -0)(++)
+// 67 68 (s-1 )(++)
+// 66 67 68 (s-2 )(++)
+// 65 66 67 68 (s-3 )(++)
+// 64 65 66 67 68 (s-4 )(++)
+
+void Pattern18(int n) {
+  int startAsciiCode = 'A' + (n - 1);
+  for (int i = 0; i < n; i++) {
+    int printAsciiVal = (startAsciiCode - i);
+    for (int j = 0; j <= i; j++) {
+      cout << static_cast<char>(printAsciiVal) << ' ';
+      printAsciiVal++;
+    }
+    cout << endl;
+  }
+}
+
+
+// * * * * * * * * * * 
+// * * * * - - * * * * 
+// * * * - - - - * * * 
+// * * - - - - - - * * 
+// * - - - - - - - - * 
+// * - - - - - - - - * 
+// * * - - - - - - * * 
+// * * * - - - - * * * 
+// * * * * - - * * * * 
+// * * * * * * * * * * 
+// LOGIC --------------
+// 8 8 8 8 8 8 8 8 8 8  => i = 0 | 8 = 5  - = 2 * 0 = 0
+// 8 8 8 8 - - 8 8 8 8  => i = 1 | 8 = 4  - = 2 * 1 = 2
+// 8 8 8 - - - - 8 8 8  => i = 2 | 8 = 3  - = 2 * 2 = 4
+// 8 8 - - - - - - 8 8  => i = 3 | 8 = 2  - = 2 * 3 = 6
+// 8 - - - - - - - - 8  => i = 4 | 8 = 1  - = 2 * 4 = 8
+// 8 - - - - - - - - 8  => i = 5 | 8 = 1  - = 2 * 4 = 8 => 4 * 2 => (5 - (2 * (5-5) + 1) * 2)
+// 8 8 - - - - - - 8 8  => i = 6 | 8 = 2  - = 2 * 3 = 6 => 3 * 2 => (6 - (2 * (6-5) + 1) * 2)
+// 8 8 8 - - - - 8 8 8  => i = 7 | 8 = 3  - = 2 * 2 = 4 => 2 * 2 => (7 - (2 * (7-5) + 1) * 2)
+// 8 8 8 8 - - 8 8 8 8  => i = 8 | 8 = 4  - = 2 * 1 = 2 => 1 * 2 => (8 - (2 * (8-5) + 1) * 2)
+// 8 8 8 8 8 8 8 8 8 8  => i = 9 | 8 = 5  - = 2 * 0 = 0 => 0 * 2 => (9 - (2 * (9-5) + 1) * 2)
+void Pattern19(int n) {
+  for (int i = 0; i < (2 * n); i++) {
+    if (i < n) { // i = (0 - 4)
+      for (int j = 0; j < (n - i); j++) {
+        cout << '*' << ' ';
+      }
+      for (int j = 0; j < (2 * i); j++) {
+        cout << '-' << ' ';
+      }
+      for (int j = 0; j < (n - i); j++) {
+        cout << '*' << ' ';
+      }
+    } else { // i = (5 - 9)
+      for (int j = 0; j <= (i - n); j++) {
+        cout << '*' << ' ';
+      }
+      for (int j = 0; j < ((i - (2 * (i -n) + 1)) * 2); j++) {
+        cout << '-' << ' ';
+      }
+      for (int j = 0; j <= (i - n); j++) {
+        cout << '*' << ' ';
+      }
+    }
     cout << endl;
   }
 }
@@ -307,5 +404,8 @@ int main() {
   // Pattern13(5);
   // Pattern14(5);
   // Pattern15(5);
-  Pattern16(5);
+  // Pattern16(5);
+  // Pattern17(5);
+  // Pattern18(5);
+  Pattern19(5);
 }
