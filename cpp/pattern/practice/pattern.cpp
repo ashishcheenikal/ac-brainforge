@@ -339,28 +339,34 @@ void Pattern18(int n) {
   }
 }
 
-
-// * * * * * * * * * * 
-// * * * * - - * * * * 
-// * * * - - - - * * * 
-// * * - - - - - - * * 
-// * - - - - - - - - * 
-// * - - - - - - - - * 
-// * * - - - - - - * * 
-// * * * - - - - * * * 
-// * * * * - - * * * * 
-// * * * * * * * * * * 
+// * * * * * * * * * *
+// * * * * - - * * * *
+// * * * - - - - * * *
+// * * - - - - - - * *
+// * - - - - - - - - *
+// * - - - - - - - - *
+// * * - - - - - - * *
+// * * * - - - - * * *
+// * * * * - - * * * *
+// * * * * * * * * * *
 // LOGIC --------------
 // 8 8 8 8 8 8 8 8 8 8  => i = 0 | 8 = 5  - = 2 * 0 = 0
 // 8 8 8 8 - - 8 8 8 8  => i = 1 | 8 = 4  - = 2 * 1 = 2
 // 8 8 8 - - - - 8 8 8  => i = 2 | 8 = 3  - = 2 * 2 = 4
 // 8 8 - - - - - - 8 8  => i = 3 | 8 = 2  - = 2 * 3 = 6
 // 8 - - - - - - - - 8  => i = 4 | 8 = 1  - = 2 * 4 = 8
-// 8 - - - - - - - - 8  => i = 5 | 8 = 1  - = 2 * 4 = 8 => 4 * 2 => (5 - (2 * (5-5) + 1) * 2)
-// 8 8 - - - - - - 8 8  => i = 6 | 8 = 2  - = 2 * 3 = 6 => 3 * 2 => (6 - (2 * (6-5) + 1) * 2)
-// 8 8 8 - - - - 8 8 8  => i = 7 | 8 = 3  - = 2 * 2 = 4 => 2 * 2 => (7 - (2 * (7-5) + 1) * 2)
-// 8 8 8 8 - - 8 8 8 8  => i = 8 | 8 = 4  - = 2 * 1 = 2 => 1 * 2 => (8 - (2 * (8-5) + 1) * 2)
-// 8 8 8 8 8 8 8 8 8 8  => i = 9 | 8 = 5  - = 2 * 0 = 0 => 0 * 2 => (9 - (2 * (9-5) + 1) * 2)
+// 8 - - - - - - - - 8  => i = 5 | 8 = 1  - = 2 * 4 = 8
+// 8 8 - - - - - - 8 8  => i = 6 | 8 = 2  - = 2 * 3 = 6
+// 8 8 8 - - - - 8 8 8  => i = 7 | 8 = 3  - = 2 * 2 = 4
+// 8 8 8 8 - - 8 8 8 8  => i = 8 | 8 = 4  - = 2 * 1 = 2
+// 8 8 8 8 8 8 8 8 8 8  => i = 9 | 8 = 5  - = 2 * 0 = 0
+
+// LOGIC for the second space loop
+//  8-spaces => 4 * 2 => (5 - (2 * (5-5) + 1) * 2)
+//  6-spaces => 3 * 2 => (6 - (2 * (6-5) + 1) * 2)
+//  4-spaces => 2 * 2 => (7 - (2 * (7-5) + 1) * 2)
+//  2-spaces => 1 * 2 => (8 - (2 * (8-5) + 1) * 2)
+//  0-spaces => 0 * 2 => (9 - (2 * (9-5) + 1) * 2)
 void Pattern19(int n) {
   for (int i = 0; i < (2 * n); i++) {
     if (i < n) { // i = (0 - 4)
@@ -377,7 +383,7 @@ void Pattern19(int n) {
       for (int j = 0; j <= (i - n); j++) {
         cout << '*' << ' ';
       }
-      for (int j = 0; j < ((i - (2 * (i -n) + 1)) * 2); j++) {
+      for (int j = 0; j < ((i - (2 * (i - n) + 1)) * 2); j++) {
         cout << '-' << ' ';
       }
       for (int j = 0; j <= (i - n); j++) {
@@ -388,13 +394,136 @@ void Pattern19(int n) {
   }
 }
 
+// * - - - - - - - - *
+// * * - - - - - - * *
+// * * * - - - - * * *
+// * * * * - - * * * *
+// * * * * * * * * * *
+// * * * * - - * * * *
+// * * * - - - - * * *
+// * * - - - - - - * *
+// * - - - - - - - - *
+// LOGIC to print the space
+//  8 => (5 - 0 - 1) = 4 * 2
+//  6 => (5 - 1 - 1) = 3 * 2
+//  4 => (5 - 2 - 1) = 2 * 2
+//  2 => (5 - 3 - 1) = 1 * 2
+//  0 => (5 - 4 - 1) = 0 * 2
+//  2 => (5 - 5 + 1) = 1 * 2
+//  4 => (6 - 5 + 1) = 2 * 2
+//  6 => (7 - 5 + 1) = 3 * 2
+//  8 => (8 - 5 + 1) = 4 * 2
+void Pattern20(int n) {
+  for (int i = 0; i < (2 * n) - 1; i++) {
+    if (i < n) { // i = (0 - 4)
+      for (int j = 0; j <= i; j++) {
+        cout << '*' << ' ';
+      }
+      for (int j = 0; j < (2 * (n - i - 1)); j++) {
+        cout << '-' << ' ';
+      }
+      for (int j = 0; j <= i; j++) {
+        cout << '*' << ' ';
+      }
+    } else { // i = (5 - 9)
+      for (int j = 0; j < 2 * n - i - 1; j++) {
+        cout << '*' << ' ';
+      }
+      for (int j = 0; j < (2 * (i - n + 1)); j++) {
+        cout << '-' << ' ';
+      }
+      for (int j = 0; j < 2 * n - i - 1; j++) {
+        cout << '*' << ' ';
+      }
+    }
+    cout << endl;
+  }
+}
+
+// * * * * *
+// *       *
+// *       *
+// *       *
+// * * * * *
+void Pattern21(int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if (j == 0 || j == (n - 1) || i == 0 || i == (n - 1))
+        cout << '*' << ' ';
+      else
+        cout << ' ' << ' ';
+    }
+    cout << endl;
+  }
+}
+
+// 4 4 4 4 4 4 4
+// 4 3 3 3 3 3 4
+// 4 3 2 2 2 3 4
+// 4 3 2 1 2 3 4
+// 4 3 2 2 2 3 4
+// 4 3 3 3 3 3 4
+// 4 4 4 4 4 4 4
+
+// LOGIC - https://youtu.be/tNm_NNSB3_w?t=4541
+//  N - current value give new matrix => N - newValue = newMatrix
+//  N - newMatrix = currentValue
+// N minus value in each cell gives the new matrix =>
+// 4 4 4 4 4 4 4  =>  0 0 0 0 0 0 0
+// 4 3 3 3 3 3 4  =>  0 1 1 1 1 1 0
+// 4 3 2 2 2 3 4  =>  0 3 2 2 2 3 0
+// 4 3 2 1 2 3 4  =>  0 3 2 3 2 3 0
+// 4 3 2 2 2 3 4  =>  0 3 2 2 2 3 0
+// 4 3 3 3 3 3 4  =>  0 1 1 1 1 1 0
+// 4 4 4 4 4 4 4  =>  0 0 0 0 0 0 0
+// value in the new matrix is the min of the distance.
+// min(top,left,right,bottom)
+// N - newMatrix = val =====> N - min(top,left,right,bottom) = currentValue
+void Pattern22(int n) {
+  for (int i = 0; i < 2 * n - 1; i++) {
+    for (int j = 0; j < 2 * n - 1; j++) {
+      int top = i;
+      int left = j;
+      int right = ((2 * n - 1) - 1) - j;
+      int bottom = ((2 * n - 1) - 1) - i;
+      int minDistanceIsNewMatrixValue = min(min(top, left), min(right, bottom));
+      int currentValue = n - minDistanceIsNewMatrixValue;
+      cout << currentValue << ' ';
+    }
+    cout << endl;
+  }
+}
+
+// -----------N = 10
+// * * * * * * * * * *
+// * *             * *
+// *   *         *   *
+// *     *     *     *
+// *       * *       *
+// *       * *       *
+// *     *     *     *
+// *   *         *   *
+// * *             * *
+// * * * * * * * * * *
+void Pattern23(int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if (j == 0 || j == (n - 1) || i == 0 || i == (n - 1) || i == j ||
+          j == (n - i - 1))
+        cout << '*' << ' ';
+      else
+        cout << ' ' << ' ';
+    }
+    cout << endl;
+  }
+}
 int main() {
   //  SquarePattern(5);
   //  RightAngleTrianglePattern(5);
   // RightAngleTriangleNumberPattern(5);
   // RightAngleTriangleNumberPattern1(5);
   // InvertedRightAngleTrianglePattern(5);
-  // // InvertedRightAngleTriangleNumberPattern(5);
+  // InvertedRightAngleTriangleNumberPattern(5);
   // HalfDiamondPattern(5);
   // InvertedHalfDiamondPattern(5);
   // DiamondPattern(5);
@@ -407,5 +536,9 @@ int main() {
   // Pattern16(5);
   // Pattern17(5);
   // Pattern18(5);
-  Pattern19(5);
+  // Pattern19(5);
+  // Pattern20(5);
+  // Pattern21(5);
+  // Pattern22(5);
+  // Pattern23(10);
 }
