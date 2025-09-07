@@ -90,6 +90,17 @@ bool Palindrome(int n){
   return n == ReverseNumber(n);
 }
 
+int BinaryToDecimal(int n, int powerTwo = 1, int decimalDigit = 0){
+  if(n == 0){
+    return decimalDigit;
+  }
+  int lastDigit = n % 10;
+  decimalDigit += lastDigit * powerTwo;
+  n = n /10;
+  powerTwo *= 2; 
+  return BinaryToDecimal(n, powerTwo, decimalDigit);
+}
+
 int main() {
   // PrintName("Ashish");
   // Print1ToN(1,10);
@@ -105,6 +116,8 @@ int main() {
   // ReverseArrayViaRecursion(inputArr);
   // int reverseNumber = ReverseNumber(12345);
   // cout<< reverseNumber ;
-  bool palindrome = Palindrome(123321);
-  cout<< palindrome ;
+  // bool palindrome = Palindrome(123321);
+  // cout<< palindrome ;
+  int binaryToDecimal = BinaryToDecimal(11111111);
+  cout<< binaryToDecimal ;
 }
