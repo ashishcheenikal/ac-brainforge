@@ -77,6 +77,19 @@ void ReverseArrayViaRecursion(vector<int> arr) {
   }
 }
 
+int ReverseNumber(int n, int digit = 0){
+  if(n%10 == n) {
+    return digit * 10 + (n % 10);
+  }
+  digit = digit * 10 + (n % 10);
+  n = n / 10;
+ return ReverseNumber(n,digit);
+}
+
+bool Palindrome(int n){
+  return n == ReverseNumber(n);
+}
+
 int main() {
   // PrintName("Ashish");
   // Print1ToN(1,10);
@@ -90,4 +103,8 @@ int main() {
   // vector<int> inputArr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   // ReverseArray(inputArr);
   // ReverseArrayViaRecursion(inputArr);
+  // int reverseNumber = ReverseNumber(12345);
+  // cout<< reverseNumber ;
+  bool palindrome = Palindrome(123321);
+  cout<< palindrome ;
 }
