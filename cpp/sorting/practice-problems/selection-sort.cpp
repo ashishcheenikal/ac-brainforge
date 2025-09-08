@@ -3,11 +3,13 @@
 #include <vector>
 using namespace std;
 
-vector<int> SelectionSort(vector<int> arr) {
+
+// Find the min element in the array and swap with starting index onwards
+vector<int> SelectionSortMin(vector<int> arr) {
   int n = arr.size();
-  for (int i = 0; i <= n - 2; i++) {
-    int min = i;
-    for (int j = i + 1; j < n - 1; j++) {
+  for (int i = 0; i < n; i++) {
+    int min = i; //selecting every element from the start for next iteration
+    for (int j = i + 1; j < n ; j++) {
       if (arr[j] < arr[min])
         min = j;
     }
@@ -19,9 +21,30 @@ vector<int> SelectionSort(vector<int> arr) {
   return arr;
 }
 
+// Find the max element in the array and swap with last index onwards
+vector<int> SelectionSortMax(vector<int> arr) {
+  int n = arr.size();
+  for (int i = 0; i < n; i++) {
+    int last = n - 1 - i;
+    int maxIndex = 0; //Always selection the index = 0 as max, because we are sorting arr from back.
+    for (int j = 0 ; j <= last;j++){
+      if(arr[j] > arr[maxIndex] )
+      {
+        maxIndex = j;
+      }
+    }
+    // swap(arr[last], arr[maxIndex]);
+    int temp = arr[last];
+    arr[last] = arr[maxIndex];
+    arr[maxIndex] = temp;
+  }
+  return arr;
+}
+
 int main() {
-  vector<int> inputArr = {23, 4, 54, 6, 765, 3, 7, 7, 3453, 6, 1, 9999};
-  vector<int> sortedArr = SelectionSort(inputArr);
+  vector<int> inputArr = {9,8,7,6,5,4,3,2,1};
+  vector<int> sortedArr = SelectionSortMin(inputArr);
+  // vector<int> sortedArr = SelectionSortMax(inputArr);
   for (auto it : sortedArr) {
     cout << it << ' ';
   }
