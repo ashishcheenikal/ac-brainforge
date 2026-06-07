@@ -6,8 +6,9 @@ using namespace std;
 
 int main()
 {
-    int a = 4, b = 3, c = -1;
-    // cin >> a >> b >> c;
+    int a, b, c;
+    cin >> a >> b >> c;
+    int x = a, y = b, z = c;
 
     if (a > b)
     {
@@ -26,4 +27,10 @@ int main()
     cout << a << endl;
     cout << b << endl;
     cout << c << endl;
+
+    cout << endl;
+
+    cout << x << endl;
+    cout << y << endl;
+    cout << z << endl;
 }
